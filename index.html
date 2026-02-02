@@ -10,12 +10,13 @@
       --bg:#d2ecb8;
       --ink:#255b43;
       --ink2:#1f4c38;
-      --paper:#f7fff1;
       --shadow: rgba(0,0,0,.16);
     }
 
-    *{
-      box-sizing:border-box;
+    *{ box-sizing:border-box; }
+
+    html, body{
+      height:100%;
     }
 
     body{
@@ -26,17 +27,21 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
 
-      /* Hintergrund mit Logo */
-      background:
+      /* Logo unten, darüber ein leicht transparenter “Wash” */
+      background-image:
+        url("pumpingdad-logo.png"),
         radial-gradient(circle at center,
-          rgba(210,236,184,0.95),
-          rgba(210,236,184,0.95)
-        ),
-        url("pumpingdad-logo.png");
+          rgba(210,236,184,0.86),
+          rgba(210,236,184,0.86)
+        );
 
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: min(90vw, 520px);
+      background-repeat: no-repeat, no-repeat;
+      background-position: center, center;
+
+      /* Wichtig: 1. Layer = Logo-Größe, 2. Layer = volle Fläche */
+      background-size: min(90vw, 520px) auto, cover;
+
+      background-color: var(--bg);
     }
 
     .card{
@@ -99,30 +104,24 @@
       opacity:.85;
     }
 
-    /* Mobile Feinschliff */
     @media (max-width: 480px){
       body{
-        background-size: 85vw;
+        background-size: 85vw auto, cover;
       }
     }
   </style>
 </head>
 
 <body>
-
   <main class="card">
     <div class="badge">The PumpingDad</div>
-
     <h1>Start</h1>
 
     <a class="btn" href="https://rechner.pumpingdad.de">
       Zum Kalorienrechner
     </a>
 
-    <div class="foot">
-      Schnell. Klar. Kostenlos.
-    </div>
+    <div class="foot">Schnell. Klar. Kostenlos.</div>
   </main>
-
 </body>
 </html>
