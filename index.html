@@ -15,9 +15,7 @@
 
     *{ box-sizing:border-box; }
 
-    html, body{
-      height:100%;
-    }
+    html, body{ height:100%; }
 
     body{
       margin:0;
@@ -27,25 +25,25 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
 
-      /* Logo unten, darüber ein leicht transparenter “Wash” */
+      /* 1) Logo + 2) leichtes Overlay, dann per Blend sichtbar */
       background-image:
         url("pumpingdad-logo.png"),
-        radial-gradient(circle at center,
-          rgba(210,236,184,0.86),
-          rgba(210,236,184,0.86)
-        );
+        radial-gradient(circle at center, rgba(210,236,184,0.55), rgba(210,236,184,0.55));
 
       background-repeat: no-repeat, no-repeat;
       background-position: center, center;
 
-      /* Wichtig: 1. Layer = Logo-Größe, 2. Layer = volle Fläche */
-      background-size: min(90vw, 520px) auto, cover;
+      /* Logo deutlich größer */
+      background-size: min(92vw, 780px) auto, cover;
+
+      /* macht das Logo "eingebrannt" statt weggewaschen */
+      background-blend-mode: multiply;
 
       background-color: var(--bg);
     }
 
     .card{
-      width:min(520px, 92vw);
+      width:min(560px, 92vw);
       background: rgba(247,255,241,0.92);
       border:3px solid var(--ink);
       border-radius:20px;
@@ -54,6 +52,9 @@
         0 22px 30px var(--shadow);
       padding:24px;
       text-align:center;
+
+      /* Card noch einen Tick abheben, damit Logo trotzdem sichtbar bleibt */
+      backdrop-filter: blur(2px);
     }
 
     .badge{
@@ -72,7 +73,7 @@
 
     h1{
       margin:6px 0 20px;
-      font-size:26px;
+      font-size:28px;
       letter-spacing:.4px;
       text-transform:uppercase;
       font-weight:1000;
@@ -106,8 +107,9 @@
 
     @media (max-width: 480px){
       body{
-        background-size: 85vw auto, cover;
+        background-size: 92vw auto, cover;
       }
+      h1{ font-size:26px; }
     }
   </style>
 </head>
