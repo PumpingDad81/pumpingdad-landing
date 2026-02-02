@@ -11,6 +11,7 @@
       --ink:#255b43;
       --ink2:#1f4c38;
       --shadow: rgba(0,0,0,.16);
+      --paper: rgba(247,255,241,0.92);
     }
 
     *{ box-sizing:border-box; }
@@ -24,27 +25,42 @@
       place-items:center;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
+      background: var(--bg);
+      position: relative;
+      overflow:hidden;
+    }
 
-      /* 1) Logo + 2) leichtes Overlay, dann per Blend sichtbar */
-      background-image:
-        url("pumpingdad-logo.png"),
-        radial-gradient(circle at center, rgba(210,236,184,0.55), rgba(210,236,184,0.55));
+    /* LOGO als separates Overlay (damit es nicht “verschwindet”) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image: url("pumpingdad-logo.png");
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size: min(92vw, 820px);
+      opacity: 0.22;                 /* Sichtbarkeit */
+      filter: contrast(1.35) saturate(0.85); /* hebt es vom Hintergrund ab */
+      pointer-events:none;
+      z-index:0;
+    }
 
-      background-repeat: no-repeat, no-repeat;
-      background-position: center, center;
-
-      /* Logo deutlich größer */
-      background-size: min(92vw, 780px) auto, cover;
-
-      /* macht das Logo "eingebrannt" statt weggewaschen */
-      background-blend-mode: multiply;
-
-      background-color: var(--bg);
+    /* Leichter “Wash” über allem, damit es nach deinem Stil aussieht */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background: radial-gradient(circle at center,
+        rgba(210,236,184,0.45),
+        rgba(210,236,184,0.45)
+      );
+      pointer-events:none;
+      z-index:1;
     }
 
     .card{
       width:min(560px, 92vw);
-      background: rgba(247,255,241,0.92);
+      background: var(--paper);
       border:3px solid var(--ink);
       border-radius:20px;
       box-shadow:
@@ -52,9 +68,9 @@
         0 22px 30px var(--shadow);
       padding:24px;
       text-align:center;
-
-      /* Card noch einen Tick abheben, damit Logo trotzdem sichtbar bleibt */
-      backdrop-filter: blur(2px);
+      position:relative;
+      z-index:2; /* über Logo/Overlay */
+      backdrop-filter: blur(1px);
     }
 
     .badge{
@@ -106,8 +122,9 @@
     }
 
     @media (max-width: 480px){
-      body{
-        background-size: 92vw auto, cover;
+      body::before{
+        background-size: 92vw;
+        opacity: 0.20;
       }
       h1{ font-size:26px; }
     }
