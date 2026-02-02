@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThePumpingDad</title>
+
+  <style>
+    :root{
+      --bg:#d2ecb8;
+      --ink:#255b43;
+      --ink2:#1f4c38;
+      --paper:#f7fff1;
+      --shadow: rgba(0,0,0,.16);
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+
+      /* Hintergrund mit Logo */
+      background:
+        radial-gradient(circle at center,
+          rgba(210,236,184,0.95),
+          rgba(210,236,184,0.95)
+        ),
+        url("pumpingdad-logo.png");
+
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: min(90vw, 520px);
+    }
+
+    .card{
+      width:min(520px, 92vw);
+      background: rgba(247,255,241,0.92);
+      border:3px solid var(--ink);
+      border-radius:20px;
+      box-shadow:
+        0 12px 0 var(--ink2),
+        0 22px 30px var(--shadow);
+      padding:24px;
+      text-align:center;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 14px;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background: rgba(210,236,184,0.95);
+      box-shadow: 0 6px 0 var(--ink2);
+      font-weight:900;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      font-size:12px;
+      margin-bottom:16px;
+    }
+
+    h1{
+      margin:6px 0 20px;
+      font-size:26px;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      font-weight:1000;
+    }
+
+    .btn{
+      display:block;
+      width:100%;
+      padding:16px 18px;
+      border-radius:16px;
+      border:3px solid var(--ink);
+      background:#255b43;
+      color:#fff;
+      font-weight:1000;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      text-decoration:none;
+      box-shadow: 0 8px 0 var(--ink2);
+    }
+
+    .btn:active{
+      transform: translateY(2px);
+      box-shadow: 0 6px 0 var(--ink2);
+    }
+
+    .foot{
+      margin-top:16px;
+      font-size:12px;
+      opacity:.85;
+    }
+
+    /* Mobile Feinschliff */
+    @media (max-width: 480px){
+      body{
+        background-size: 85vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="card">
+    <div class="badge">The PumpingDad</div>
+
+    <h1>Start</h1>
+
+    <a class="btn" href="https://rechner.pumpingdad.de">
+      Zum Kalorienrechner
+    </a>
+
+    <div class="foot">
+      Schnell. Klar. Kostenlos.
+    </div>
+  </main>
+
+</body>
+</html>
